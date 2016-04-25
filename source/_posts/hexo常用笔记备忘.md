@@ -1,0 +1,14 @@
+---
+title: hexo常用笔记备忘
+date: 2016-04-24 03:10:15
+tags: 
+  -备忘
+categorie: 
+  -备忘
+---
+    hexo n 或 hexo new  "**"  新建文章
+    hexo c 或 hexo clean  清除缓存
+    hexo g 或 hexo generat  生成
+    hexo g --watch 监视
+    hexo s 或 hexo server   生成服务 默认4000端口
+    hexo d 或 hexo deploy  发布

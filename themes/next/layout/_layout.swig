@@ -21,6 +21,7 @@
   {% endif %}
 
   <div class="{{ container_class }} {% block page_class %}{% endblock %} ">
+
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -51,7 +52,11 @@
     <div class="back-to-top">
       <i class="fa fa-arrow-up"></i>
     </div>
+
   </div>
+
+  <ul class="bgs"></ul>
+
 
   {% include '_scripts/vendors.swig' %}
   {% include '_scripts/commons.swig' %}
@@ -69,6 +74,7 @@
   {% include '_scripts/third-party/mathjax.swig' %}
   {% include '_scripts/third-party/lean-analytics.swig' %}
   {% include '_scripts/baidu-push.swig' %}
+    <script src="/js/src/bg-change.js"></script>
 
 </body>
 </html>
