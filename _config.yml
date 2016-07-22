@@ -78,6 +78,8 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
+##repository: git@git.coding.net:cloudzqy/cloudzqy
+##branch: coding-pages
   repository: git@github.com:cloudZQY/cloudZQY.github.io.git
   branch: master
 

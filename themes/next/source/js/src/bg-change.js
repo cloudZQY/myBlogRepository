@@ -1,8 +1,8 @@
 $(function(){
 	if (!navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i)) {
-		$.getJSON('/images/bg/db.json', function(imgs) {
+		$.getJSON('/images/qiniu.json', function(imgs) {
 			//添加背景li元素
-			var path = '/images/bg/';
+			var path = 'http://7xsbgo.com1.z0.glb.clouddn.com/';
 			for (var i = 0; i < imgs.length; i++) {
 				var $li = $('<li></li>');
 				$li.appendTo($(".bgs"));
@@ -17,7 +17,6 @@ $(function(){
 					$images[i].load(function(){
 						$images[i+1].attr("src", path + imgs[i+1]);
 						$('.bgs li').eq(i+1).css('background-image', 'url(' + (path + imgs[i+1]) + ')');
-						console.log(i+1+'张图开始加载了');
 					})
 				})(i);
 			}
