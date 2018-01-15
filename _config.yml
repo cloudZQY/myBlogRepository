@@ -13,7 +13,7 @@ email: 498219667@qq.com
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://zhouqingyun.space
+url: http://www.cloudzqy.space
 root: /
 permalink: :category/:title/
 permalink_defaults:
