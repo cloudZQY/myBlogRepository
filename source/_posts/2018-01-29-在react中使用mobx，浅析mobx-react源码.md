@@ -3,10 +3,11 @@ title: 浅析mobx-react源码（一）：自动追踪依赖
 date: 2018-01-29 15:17:46
 tags: react
 ---
-使用一种工具就像使用一个包装好的黑盒子，我们不必探究其内部到底是如何实现，只需要能够将用法了然于胸，什么样的输入会得到什么样的输出能有完美的预测。但不幸的事，大部分文档都难以让自己达到这点，为此我们不得不浅析一下源码，来探寻他是如何实现的，避免出现意料之外的情况导致bug，也防止做出多余的操作。
+使用一种工具就像使用一个包装好的黑盒子，我们不必探究其内部到底是如何实现，只需要能够将用法了然于胸，什么样的输入会得到什么样的输出能有完美的预测。但不幸的事，大部分文档都难以让自己达到这点，为此我们不得不浅析一下源码，来探寻他是如何实现的，避免出现意料之外的情况导致bug，也防止做出多余的操作，精简代码，减少bug。
 
 ## 自动追踪依赖
 在使用redux的时候，我们不得不使用connect来从store中取到当前组件所需要的state，这其实也是一个依赖分析的问题，只有当组件所依赖的state变化时，当前组件才会更新，避免了不必要的render。而在使用mobx时，这一步被自动完成了，因此在使用mobx时，会感到极其酸爽舒适，只需要一个@observer就能尽情地使用store中的state了，而且完全不用担心性能问题，那么这究竟是如何做到的？  
+<!-- more -->
 
 ## 了解mobx机制
 在探究mobx-react的源码之前，得先了解一下mobx。  
@@ -92,8 +93,9 @@ const initialRender = () => {
               let hasError = true
               try {
                   isForcingUpdate = true
-                  // 在组件有props时，mobx会帮你监听，当props改变时，会进行shallowly modified，
-                  // 并且forceUpdate，这里我们暂时不用管
+                  // skipRender是用来防止死循环，这里不用管
+                  // 当依赖的state有变化是会使用forceUpdate强制render
+                  // 并解析新的依赖
                   if (!skipRender) Component.prototype.forceUpdate.call(this)
                   hasError = false
               } finally {
@@ -140,6 +142,6 @@ const reactiveRender = () => {
 这样就达到了用mobx控制react组件的render。
 
 ##  结论
-对这一段代码我们可以知道，仅仅在组件上加一行@observer然后使用mobx的可观察属性进行render控制view，就能达到性能的高效化，对单个state属性的粒度上控制组件的render，所以放心大胆地用mobx吧。
+对这一段代码我们可以知道，仅仅在组件上加一行@observer然后使用mobx的可观察属性进行render控制view，就能达到性能的高效化，对单个state属性的粒度上控制组件的render，所以放心大胆地用mobx来管理应用的state吧！
 
 下一篇 分批处理变化
